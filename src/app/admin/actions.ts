@@ -11,7 +11,9 @@ export async function login(
   _previous: ActionState,
   formData: FormData,
 ): Promise<ActionState> {
-  const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  const email = String(formData.get("username") ?? formData.get("email") ?? "")
+    .trim()
+    .toLowerCase();
   const password = String(formData.get("password") ?? "");
   const next = safeAdminPath(String(formData.get("next") ?? ""));
 
@@ -23,7 +25,7 @@ export async function login(
   }
 
   if (!email || !password) {
-    return { message: "Informe e-mail e senha.", errors: {} };
+    return { message: "Informe usuário e senha.", errors: {} };
   }
 
   const configuredEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase() ?? "";
@@ -33,7 +35,7 @@ export async function login(
 
   if (!emailOk || !passwordOk) {
     await new Promise((resolve) => setTimeout(resolve, 400));
-    return { message: "E-mail ou senha incorretos.", errors: {} };
+    return { message: "Usuário ou senha incorretos.", errors: {} };
   }
 
   const started = await startSession();

@@ -1,33 +1,58 @@
 export const services = [
   {
-    title: "Casamentos",
-    text: "Cerimônia, entrada e festa com imagens estáveis. O roteiro é combinado antes, para não perder o momento que importa.",
-    image: "/images/casamento.jpg",
-    alt: "Casal em trajes de casamento, com buquê, sob luz de fim de tarde.",
-  },
-  {
-    title: "Eventos corporativos",
-    text: "Convenções, lançamentos e confraternizações registrados de um ângulo que a foto de chão não alcança.",
-    image: "/images/corporativo.jpg",
-    alt: "Auditório preparado para um evento corporativo, com mesas e telas.",
-  },
-  {
-    title: "Shows e festivais",
-    text: "Plano aberto do público, do palco e da estrutura, no horário autorizado pela produção.",
-    image: "/images/show.jpg",
-    alt: "Público de costas para um palco iluminado durante um show noturno.",
-  },
-  {
-    title: "Formaturas",
-    text: "Colação, foto da turma e a festa, com enquadramento aéreo do local e das pessoas.",
-    image: "/images/formatura.jpg",
-    alt: "Formandos de costas jogando os capelos para o alto ao pôr do sol.",
+    title: "Eventos",
+    text: "Casamentos, aniversários, confraternizações e festas, com o evento visto de um ângulo novo.",
+    image: "/folders/eventos.jpg",
+    alt: "Folder circular de eventos, com drone sobre um palco e fogos.",
   },
   {
     title: "Esportes",
-    text: "Corridas, torneios e provas ao ar livre, com o percurso e a chegada vistos de cima.",
-    image: "/images/esporte.jpg",
-    alt: "Três corredoras em silhueta durante uma prova ao amanhecer.",
+    text: "Corridas, provas e competições, com o percurso e a chegada registrados de cima.",
+    image: "/folders/esportes.jpg",
+    alt: "Folder circular de esportes, com drone sobre corredores e ciclistas.",
+  },
+  {
+    title: "Obras",
+    text: "Acompanhamento da evolução, do terreno ao acabamento, com comparativo antes, durante e depois.",
+    image: "/folders/obras.jpg",
+    alt: "Folder circular de obras, com drone sobre um canteiro e um guindaste.",
+  },
+  {
+    title: "Divulgações",
+    text: "Imagens para campanhas, marcas e redes, feitas para chamar atenção.",
+    image: "/folders/divulgacoes.jpg",
+    alt: "Folder circular de divulgações, com drone sobre uma avenida de anúncios.",
+  },
+] as const;
+
+export const folders = [
+  {
+    src: "/folders/voos.jpg",
+    width: 1024,
+    height: 590,
+    alt: "Folder da MKDrones61 com voos profissionais, o WhatsApp (61) 99877-2993 e o Instagram mkdrones61.",
+    wide: true,
+  },
+  {
+    src: "/folders/imagens-aereas.jpg",
+    width: 959,
+    height: 1024,
+    alt: "Folder de imagens aéreas para esportes, obras, eventos e divulgações, com WhatsApp e Instagram.",
+    wide: false,
+  },
+  {
+    src: "/folders/obras-evolucao.jpg",
+    width: 824,
+    height: 1024,
+    alt: "Folder de acompanhamento de obras e evolução, com comparativo antes, durante e depois.",
+    wide: false,
+  },
+  {
+    src: "/folders/momentos.jpg",
+    width: 682,
+    height: 1024,
+    alt: "Folder para aniversários, casamentos, confraternizações e festas, com o contato da MKDrones61.",
+    wide: false,
   },
 ] as const;
 

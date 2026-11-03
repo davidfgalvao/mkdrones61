@@ -50,11 +50,11 @@ Copie `.env.example` para `.env.local`. Nenhum segredo deve ir para o Git.
 | Variável | Uso |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | URL pública, sem barra no final. Se ficar vazia na Vercel, o site usa o domínio de produção do projeto |
-| `ADMIN_EMAIL` | E-mail do administrador |
+| `ADMIN_EMAIL` | Usuário do administrador |
 | `ADMIN_PASSWORD` | Senha do administrador |
 | `AUTH_SECRET` | Segredo da sessão, com pelo menos 16 caracteres |
-| `DATABASE_URL` | `file:data/mkdrones61.db` no computador, ou `libsql://...` na Vercel |
-| `DATABASE_AUTH_TOKEN` | Token do Turso. Vazio no banco local |
+| `DATABASE_URL` | `file:data/mkdrones61.db` no computador. Na Vercel, o Turso entra por `TURSO_DATABASE_URL` |
+| `DATABASE_AUTH_TOKEN` | Token do banco remoto, se `DATABASE_URL` não for arquivo. No Turso da Vercel o nome é `TURSO_AUTH_TOKEN` |
 
 O banco local é criado em `data/` na primeira ordem salva. Essa pasta não entra no Git.
 
@@ -80,11 +80,6 @@ O projeto é publicado na Vercel. Push na branch `main` gera produção.
 
 Na Vercel, em **Settings → Environment Variables**, repita as variáveis do `.env.local`, com `NEXT_PUBLIC_SITE_URL` apontando para o domínio publicado.
 
-O arquivo SQLite não persiste na Vercel. Crie um banco gratuito no [Turso](https://turso.tech/) e use:
+A Vercel não guarda arquivo SQLite entre as execuções. Em produção o projeto usa um banco Turso no plano gratuito, ligado pelas variáveis `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN`. No computador, `DATABASE_URL=file:data/mkdrones61.db` continua valendo.
 
-```text
-DATABASE_URL=libsql://seu-banco.turso.io
-DATABASE_AUTH_TOKEN=o-token
-```
-
-Sem essas duas variáveis, a landing continua no ar e a área administrativa avisa que o banco ainda não grava.
+Sem o banco remoto, a landing continua no ar e a área administrativa avisa que as ordens não gravam.

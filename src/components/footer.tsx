@@ -18,6 +18,9 @@ export function Footer() {
             <a className="underline-offset-4 hover:underline" href={whatsappHref()}>
               WhatsApp {site.phoneDisplay}
             </a>
+            <a className="underline-offset-4 hover:underline" href={site.instagramHref}>
+              Instagram {site.instagram}
+            </a>
             <a className="underline-offset-4 hover:underline" href="/admin">
               Área administrativa
             </a>
@@ -25,7 +28,7 @@ export function Footer() {
         </div>
         <div className="border-t border-border">
           <p className="mx-auto max-w-6xl px-5 py-4 text-sm text-muted">
-            © {year} {site.name}. Os vídeos e as fotos de Brasília são de trabalhos realizados. As demais imagens são ilustrativas.
+            © {year} {site.name}. Os vídeos são de voos feitos em Brasília. Os folders são o material oficial da marca.
           </p>
         </div>
       </footer>

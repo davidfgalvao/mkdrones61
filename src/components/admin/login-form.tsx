@@ -6,7 +6,7 @@ import { emptyActionState } from "@/lib/action-state";
 
 export function LoginForm({ next }: { next: string }) {
   const [state, action, pending] = useActionState(login, emptyActionState);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
 
@@ -14,18 +14,18 @@ export function LoginForm({ next }: { next: string }) {
     <form action={action} className="surface mt-8 p-6" noValidate>
       <input type="hidden" name="next" value={next} />
       <div>
-        <label htmlFor="email" className="mb-2 block font-medium">
-          E-mail
+        <label htmlFor="username" className="mb-2 block font-medium">
+          Usuário
         </label>
         <input
-          id="email"
-          name="email"
-          type="email"
+          id="username"
+          name="username"
+          type="text"
           autoComplete="username"
           required
           className="field"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
         />
       </div>
       <div className="mt-4">

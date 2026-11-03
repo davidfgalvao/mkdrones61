@@ -1,18 +1,3 @@
-import Image from "next/image";
-
-const photos = [
-  {
-    src: "/trabalhos/catedral.jpg",
-    alt: "Catedral de Brasília iluminada, vista de drone à noite.",
-    caption: "Catedral de Brasília à noite",
-  },
-  {
-    src: "/trabalhos/esplanada.jpg",
-    alt: "Congresso Nacional e a Esplanada dos Ministérios à noite, em tomada aérea.",
-    caption: "Congresso Nacional e a Esplanada dos Ministérios",
-  },
-] as const;
-
 const videos = [
   {
     src: "/trabalhos/voo-01.mp4",
@@ -43,26 +28,7 @@ export function Works() {
           Registros reais de sobrevoo noturno. Aperte o play para ver o movimento de cada tomada.
         </p>
 
-        <ul className="mt-10 grid gap-4 md:grid-cols-2">
-          {photos.map((photo) => (
-            <li key={photo.src} className="surface overflow-hidden">
-              <figure>
-                <div className="relative aspect-video">
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <figcaption className="p-5 text-sm leading-relaxed text-muted">{photo.caption}</figcaption>
-              </figure>
-            </li>
-          ))}
-        </ul>
-
-        <ul className="mt-4 grid gap-4 sm:grid-cols-3">
+        <ul className="mt-10 grid gap-4 sm:grid-cols-3">
           {videos.map((video) => (
             <li key={video.src} className="surface overflow-hidden">
               <figure>

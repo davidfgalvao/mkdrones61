@@ -8,7 +8,8 @@ export function JsonLd() {
     description: site.description,
     url: getSiteUrl(),
     telephone: `+${site.phoneE164}`,
-    image: `${getSiteUrl()}/images/evento.jpg`,
+    sameAs: [site.instagramHref],
+    image: `${getSiteUrl()}/folders/voos.jpg`,
     areaServed: ["Distrito Federal", "Entorno do Distrito Federal"],
     address: {
       "@type": "PostalAddress",

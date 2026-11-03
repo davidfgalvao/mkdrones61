@@ -33,20 +33,22 @@ CREATE TABLE IF NOT EXISTS service_orders (
   notes TEXT NOT NULL DEFAULT ''
 )`;
 
+function remoteAuthToken() {
+  return process.env.DATABASE_AUTH_TOKEN?.trim() || process.env.TURSO_AUTH_TOKEN?.trim() || "";
+}
+
 export function databaseUrl() {
-  const configured = process.env.DATABASE_URL?.trim();
+  const configured = process.env.DATABASE_URL?.trim() || process.env.TURSO_DATABASE_URL?.trim();
   if (configured) return configured;
   return `file:${path.join(process.cwd(), "data", "mkdrones61.db")}`;
 }
 
 function assertConfigured(url: string) {
   if (process.env.VERCEL && url.startsWith("file:")) {
-    throw new Error(
-      "Na Vercel o arquivo local não grava as ordens. Crie um banco Turso e defina DATABASE_URL e DATABASE_AUTH_TOKEN.",
-    );
+    throw new Error("O banco remoto ainda não está ligado a este projeto.");
   }
-  if (!url.startsWith("file:") && !process.env.DATABASE_AUTH_TOKEN?.trim()) {
-    throw new Error("Falta a variável DATABASE_AUTH_TOKEN para o banco remoto.");
+  if (!url.startsWith("file:") && !remoteAuthToken()) {
+    throw new Error("Falta o token do banco remoto.");
   }
 }
 
@@ -57,7 +59,7 @@ function client() {
   if (url.startsWith("file:")) {
     mkdirSync(path.join(process.cwd(), "data"), { recursive: true });
   }
-  const authToken = process.env.DATABASE_AUTH_TOKEN?.trim();
+  const authToken = remoteAuthToken();
   globalForDb.mkdronesDb = createClient({
     url,
     ...(authToken ? { authToken } : {}),

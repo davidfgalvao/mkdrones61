@@ -10,13 +10,18 @@ export function Contact() {
           Conte a data e o lugar pelo WhatsApp.
         </h2>
         <p className="mt-4 text-lg leading-relaxed text-muted">
-          O atendimento é direto no WhatsApp {site.phoneDisplay}. Mande a data, o local e o tipo de
-          evento para combinar a cobertura.
+          O orçamento é pelo WhatsApp {site.phoneDisplay}. Mande a data, o local e o que precisa
+          ser filmado: evento, esporte, obra ou divulgação.
         </p>
-        <a className="btn btn-primary mt-8" href={whatsappHref()}>
-          <MessageCircle aria-hidden="true" className="h-5 w-5" />
-          Chamar no WhatsApp
-        </a>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a className="btn btn-primary" href={whatsappHref()}>
+            <MessageCircle aria-hidden="true" className="h-5 w-5" />
+            Chamar no WhatsApp
+          </a>
+          <a className="btn btn-secondary" href={site.instagramHref}>
+            Instagram {site.instagram}
+          </a>
+        </div>
       </div>
     </section>
   );

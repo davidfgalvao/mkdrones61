@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     description: site.subtitle,
     images: [
       {
-        url: "/trabalhos/catedral.jpg",
+        url: "/folders/voos.jpg",
         width: 1024,
-        height: 576,
-        alt: "Catedral de Brasília iluminada, em tomada aérea noturna.",
+        height: 590,
+        alt: "Folder da MKDrones61 com voos profissionais sobre Brasília.",
       },
     ],
   },
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.name} — Cobertura de eventos com drone no DF`,
     description: site.subtitle,
-    images: ["/trabalhos/catedral.jpg"],
+    images: ["/folders/voos.jpg"],
   },
   robots: { index: true, follow: true },
 };
