@@ -24,8 +24,10 @@ export const nav = [
 ] as const;
 
 export function getSiteUrl() {
-  const value = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
-  if (value) return value;
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
+  if (configured) return configured;
+  const production = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim().replace(/\/$/, "");
+  if (production) return `https://${production}`;
   return "http://localhost:3000";
 }
 

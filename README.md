@@ -50,7 +50,7 @@ Copie `.env.example` para `.env.local`. Nenhum segredo deve ir para o Git.
 
 | Variável | Uso |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | URL pública, sem barra no final |
+| `NEXT_PUBLIC_SITE_URL` | URL pública, sem barra no final. Se ficar vazia na Vercel, o site usa o domínio de produção do projeto |
 | `ADMIN_EMAIL` | E-mail do administrador |
 | `ADMIN_PASSWORD` | Senha do administrador |
 | `AUTH_SECRET` | Segredo da sessão, com pelo menos 16 caracteres |
