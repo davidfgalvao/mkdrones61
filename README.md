@@ -1,4 +1,4 @@
-# Galvão Aerial
+# MKDrones61
 
 Site de divulgação da cobertura de eventos com drone no Distrito Federal e no entorno, com área administrativa para emitir ordem de serviço em PDF.
 
@@ -10,7 +10,6 @@ Site de divulgação da cobertura de eventos com drone no Distrito Federal e no 
 - Zod para validação
 - SQLite local via libSQL, ou Turso na Vercel
 - pdf-lib para o arquivo PDF
-- FormSubmit para o formulário público, no plano gratuito
 
 ## Estrutura
 
@@ -18,7 +17,7 @@ Site de divulgação da cobertura de eventos com drone no Distrito Federal e no 
 src/
   app/                landing, administração e PDF
   components/         seções do site e a ordem de serviço
-  config/site.ts      nome, telefone, WhatsApp e e-mail
+  config/site.ts      nome, telefone e WhatsApp
   data/content.ts     serviços, cidades e perguntas
   lib/                sessão, banco, validação e PDF
 ```
@@ -54,18 +53,19 @@ Copie `.env.example` para `.env.local`. Nenhum segredo deve ir para o Git.
 | `ADMIN_EMAIL` | E-mail do administrador |
 | `ADMIN_PASSWORD` | Senha do administrador |
 | `AUTH_SECRET` | Segredo da sessão, com pelo menos 16 caracteres |
-| `DATABASE_URL` | `file:data/galvao-aerial.db` no computador, ou `libsql://...` na Vercel |
+| `DATABASE_URL` | `file:data/mkdrones61.db` no computador, ou `libsql://...` na Vercel |
 | `DATABASE_AUTH_TOKEN` | Token do Turso. Vazio no banco local |
 
 O banco local é criado em `data/` na primeira ordem salva. Essa pasta não entra no Git.
 
 ## Conteúdo do site
 
-- Telefone, WhatsApp, e-mail e textos: `src/config/site.ts`
+- Telefone, WhatsApp e textos: `src/config/site.ts`
 - Serviços, cidades e perguntas: `src/data/content.ts`
-- Fotos: `public/images`
+- Fotos ilustrativas: `public/images`
+- Trabalhos realizados e marca: `public/trabalhos` e `public/marca`
 
-O formulário público envia pelo [FormSubmit](https://formsubmit.co/) para o e-mail definido em `site.email`. Na primeira vez, o Hotmail recebe um link **Activate Form**.
+O contato público é só pelo WhatsApp.
 
 ## Ordem de serviço
 

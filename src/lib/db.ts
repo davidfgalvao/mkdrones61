@@ -2,7 +2,7 @@ import { createClient, type Client, type Row } from "@libsql/client";
 import { mkdirSync } from "node:fs";
 import path from "node:path";
 
-const globalForDb = globalThis as unknown as { galvaoDb?: Client };
+const globalForDb = globalThis as unknown as { mkdronesDb?: Client };
 let schema: Promise<void> | null = null;
 
 const CREATE_TABLE = `
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS service_orders (
 export function databaseUrl() {
   const configured = process.env.DATABASE_URL?.trim();
   if (configured) return configured;
-  return `file:${path.join(process.cwd(), "data", "galvao-aerial.db")}`;
+  return `file:${path.join(process.cwd(), "data", "mkdrones61.db")}`;
 }
 
 function assertConfigured(url: string) {
@@ -51,18 +51,18 @@ function assertConfigured(url: string) {
 }
 
 function client() {
-  if (globalForDb.galvaoDb) return globalForDb.galvaoDb;
+  if (globalForDb.mkdronesDb) return globalForDb.mkdronesDb;
   const url = databaseUrl();
   assertConfigured(url);
   if (url.startsWith("file:")) {
     mkdirSync(path.join(process.cwd(), "data"), { recursive: true });
   }
   const authToken = process.env.DATABASE_AUTH_TOKEN?.trim();
-  globalForDb.galvaoDb = createClient({
+  globalForDb.mkdronesDb = createClient({
     url,
     ...(authToken ? { authToken } : {}),
   });
-  return globalForDb.galvaoDb;
+  return globalForDb.mkdronesDb;
 }
 
 async function ready() {

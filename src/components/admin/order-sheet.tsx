@@ -8,14 +8,17 @@ export function OrderSheet({ order }: { order: ServiceOrder }) {
 
   return (
     <article className="documento" aria-label={`Ordem de serviço ${orderCode(order)}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/marca/marca.png" alt="" className="documento-marca" />
       <header className="flex flex-wrap items-start justify-between gap-4 border-b border-[#e7e5e4] pb-5">
         <div>
-          <p className="font-display text-3xl text-[#1c1917]">{site.name}</p>
-          <p className="mt-1 text-sm text-[#44403c]">Cobertura aérea de eventos</p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/marca/logo.png" alt={site.name} className="h-24 w-auto" />
+          <p className="mt-3 text-sm text-[#44403c]">Cobertura aérea de eventos</p>
           <p className="mt-2 text-sm text-[#44403c]">
             {site.location}
             <br />
-            {site.phoneDisplay} · {site.email}
+            WhatsApp {site.phoneDisplay}
           </p>
         </div>
         <div className="text-left sm:text-right">

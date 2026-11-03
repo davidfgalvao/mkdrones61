@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { fieldErrors } from "@/lib/contact";
 import { parseMoney } from "@/lib/money";
 
 export const orderStatuses = ["rascunho", "emitida", "concluida", "cancelada"] as const;
@@ -151,7 +150,12 @@ export function orderCode(order: Pick<ServiceOrder, "number" | "createdAt">) {
 }
 
 export function orderFieldErrors(error: z.ZodError) {
-  return fieldErrors(error);
+  const map: Record<string, string> = {};
+  for (const issue of error.issues) {
+    const key = issue.path[0];
+    if (typeof key === "string" && !map[key]) map[key] = issue.message;
+  }
+  return map;
 }
 
 export function blank(value: string) {

@@ -33,4 +33,4 @@ jobs:
           ADMIN_EMAIL: admin@example.com
           ADMIN_PASSWORD: senha-de-ci
           AUTH_SECRET: segredo-de-ci-com-mais-de-trinta-e-dois
-          DATABASE_URL: file:data/galvao-aerial.db
+          DATABASE_URL: file:data/mkdrones61.db

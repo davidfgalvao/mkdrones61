@@ -21,8 +21,8 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Galvão Aerial — Cobertura de eventos com drone no DF",
-    template: "%s — Galvão Aerial",
+    default: `${site.name} — Cobertura de eventos com drone no DF`,
+    template: `%s — ${site.name}`,
   },
   description: site.description,
   applicationName: site.name,
@@ -40,22 +40,22 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "/",
     siteName: site.name,
-    title: "Galvão Aerial — Cobertura de eventos com drone no DF",
+    title: `${site.name} — Cobertura de eventos com drone no DF`,
     description: site.subtitle,
     images: [
       {
-        url: "/images/evento.jpg",
-        width: 2000,
-        height: 1335,
-        alt: "Público em um evento noturno com confete e luzes de palco.",
+        url: "/trabalhos/catedral.jpg",
+        width: 1024,
+        height: 576,
+        alt: "Catedral de Brasília iluminada, em tomada aérea noturna.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Galvão Aerial — Cobertura de eventos com drone no DF",
+    title: `${site.name} — Cobertura de eventos com drone no DF`,
     description: site.subtitle,
-    images: ["/images/evento.jpg"],
+    images: ["/trabalhos/catedral.jpg"],
   },
   robots: { index: true, follow: true },
 };

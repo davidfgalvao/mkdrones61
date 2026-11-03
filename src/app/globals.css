@@ -166,11 +166,33 @@ body {
 }
 
 .documento {
+  position: relative;
+  overflow: hidden;
   background: #fffefb;
   color: #1c1917;
   border: 1px solid #e7e5e4;
   border-radius: 0.5rem;
   padding: 2.25rem 2rem;
+}
+
+.documento-marca {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  z-index: 0;
+  width: min(78%, 440px);
+  height: auto;
+  transform: translate(-50%, -50%);
+  opacity: 0.14;
+  pointer-events: none;
+  user-select: none;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.documento > :not(.documento-marca) {
+  position: relative;
+  z-index: 1;
 }
 
 summary::-webkit-details-marker {

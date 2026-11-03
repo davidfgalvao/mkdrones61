@@ -8,7 +8,6 @@ export function JsonLd() {
     description: site.description,
     url: getSiteUrl(),
     telephone: `+${site.phoneE164}`,
-    email: site.email,
     image: `${getSiteUrl()}/images/evento.jpg`,
     areaServed: ["Distrito Federal", "Entorno do Distrito Federal"],
     address: {

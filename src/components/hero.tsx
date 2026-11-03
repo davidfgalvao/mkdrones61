@@ -17,8 +17,8 @@ export function Hero() {
             <a className="btn btn-primary" href={whatsappHref()}>
               Chamar no WhatsApp
             </a>
-            <Link className="btn btn-secondary" href="/#contato">
-              Pedir orçamento por e-mail
+            <Link className="btn btn-secondary" href="/#trabalhos">
+              Ver trabalhos realizados
             </Link>
           </div>
           <p className="mt-6 flex items-start gap-2 text-sm text-muted">

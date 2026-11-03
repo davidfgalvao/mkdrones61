@@ -1,4 +1,6 @@
-import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from "pdf-lib";
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFImage, type PDFPage } from "pdf-lib";
 import { site } from "@/config/site";
 import { formatDateBr, formatDateTimeBr, formatMoney } from "@/lib/money";
 import { blank, orderCode, statusLabels, type ServiceOrder } from "@/lib/orders-shared";
@@ -58,11 +60,27 @@ function wrapLine(text: string, font: PDFFont, size: number, maxWidth: number) {
   return lines;
 }
 
+function stamp(page: PDFPage, image: PDFImage) {
+  const width = 340;
+  const height = (image.height / image.width) * width;
+  page.drawImage(image, {
+    x: (PAGE_WIDTH - width) / 2,
+    y: (PAGE_HEIGHT - height) / 2,
+    width,
+    height,
+    opacity: 0.12,
+  });
+}
+
 export async function buildOrderPdf(order: ServiceOrder) {
   const doc = await PDFDocument.create();
   const font = await doc.embedFont(StandardFonts.Helvetica);
   const bold = await doc.embedFont(StandardFonts.HelveticaBold);
+  const brandDir = path.join(process.cwd(), "public", "marca");
+  const logo = await doc.embedPng(readFileSync(path.join(brandDir, "logo.png")));
+  const marca = await doc.embedPng(readFileSync(path.join(brandDir, "marca.png")));
   let page = doc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+  stamp(page, marca);
   let y = PAGE_HEIGHT - MARGIN;
   const maxWidth = PAGE_WIDTH - MARGIN * 2;
   const code = orderCode(order);
@@ -72,6 +90,7 @@ export async function buildOrderPdf(order: ServiceOrder) {
 
   function newPage() {
     page = doc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+    stamp(page, marca);
     y = PAGE_HEIGHT - MARGIN;
     drawLine(`${site.name} · ${code}`, 9, bold, muted);
     y -= 8;
@@ -120,9 +139,28 @@ export async function buildOrderPdf(order: ServiceOrder) {
     gap(4);
   }
 
-  drawLine(site.name.toUpperCase(), 18, bold, ink);
-  drawLine("Cobertura aérea de eventos", 11, font, muted);
-  drawLine(`${site.location} · ${site.phoneDisplay} · ${site.email}`, 10, font, muted);
+  const logoWidth = 108;
+  const logoHeight = (logo.height / logo.width) * logoWidth;
+  page.drawImage(logo, {
+    x: MARGIN,
+    y: y - logoHeight,
+    width: logoWidth,
+    height: logoHeight,
+  });
+  const textX = MARGIN + logoWidth + 16;
+  page.drawText(sanitize(site.name), { x: textX, y: y - 20, size: 16, font: bold, color: ink });
+  page.drawText(sanitize("Cobertura aérea de eventos"), {
+    x: textX,
+    y: y - 38,
+    size: 11,
+    font,
+    color: muted,
+  });
+  const contact = wrapLine(`${site.location} · WhatsApp ${site.phoneDisplay}`, font, 10, PAGE_WIDTH - MARGIN - textX);
+  contact.forEach((line, index) => {
+    page.drawText(line, { x: textX, y: y - 56 - index * 14, size: 10, font, color: muted });
+  });
+  y -= Math.max(logoHeight, 56 + contact.length * 14) + 8;
   gap(12);
   page.drawLine({
     start: { x: MARGIN, y },
