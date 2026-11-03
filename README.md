@@ -80,6 +80,6 @@ O projeto é publicado na Vercel. Push na branch `main` gera produção.
 
 Na Vercel, em **Settings → Environment Variables**, repita as variáveis do `.env.local`, com `NEXT_PUBLIC_SITE_URL` apontando para o domínio publicado.
 
-A Vercel não guarda arquivo SQLite entre as execuções. Em produção o projeto usa um banco Turso no plano gratuito, ligado pelas variáveis `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN`. No computador, `DATABASE_URL=file:data/mkdrones61.db` continua valendo.
+A Vercel não guarda arquivo SQLite entre as execuções. Em produção as ordens ficam no Turso, plano Starter gratuito, no banco `mkdrones61`. As variáveis `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN` já estão no projeto. No computador, `DATABASE_URL=file:data/mkdrones61.db` continua valendo.
 
 Sem o banco remoto, a landing continua no ar e a área administrativa avisa que as ordens não gravam.
